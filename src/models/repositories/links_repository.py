@@ -10,13 +10,14 @@ class LinksRepository:
         cursor.execute(
             '''
                 INSERT INTO links
-                    (id, trip_id, link)
+                    (id, trip_id, link, title)
                 VALUES
-                    (?, ?, ?)
+                    (?, ?, ?, ?)
             ''', (
                 link_infos["id"],
                 link_infos["trip_id"],
-                link_infos["link"]
+                link_infos["link"],
+                link_infos["title"],
             )
         )
         self.__conn.commit()
@@ -28,5 +29,5 @@ class LinksRepository:
                 SELECT * FROM links WHERE trip_id = ?
             ''', (trip_id,)
         )
-        link = cursor.fetchall()
-        return link
+        links = cursor.fetchall()
+        return links
