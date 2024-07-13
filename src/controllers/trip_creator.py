@@ -2,8 +2,8 @@ from typing import Dict
 import uuid
 
 class TripCreator:
-    def __init__(self, trip_repository, emails_repository) -> None:
-        self.__trip_repository = trip_repository
+    def __init__(self, trips_repository, emails_repository) -> None:
+        self.__trips_repository = trips_repository
         self.__emails_repository = emails_repository
 
     def create(self, body) -> Dict:
@@ -13,7 +13,7 @@ class TripCreator:
             trip_id = str(uuid.uuid4())
             trip_infos = { **body, "id": trip_id }
 
-            self.__trip_repository.create_trip(trip_infos)
+            self.__trips_repository.create_trip(trip_infos)
 
             if emails:
                 for email in emails:
