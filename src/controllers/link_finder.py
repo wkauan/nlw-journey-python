@@ -1,12 +1,12 @@
 from typing import Dict
 
 class LinkFinder:
-    def __init__(self, link_repository) -> None:
-        self.__link_repository = link_repository
+    def __init__(self, links_repository) -> None:
+        self.__links_repository = links_repository
 
     def find(self, trip_id) -> Dict:
         try:
-            links = self.__link_repository.find_links_from_trip(trip_id)
+            links = self.__links_repository.find_links_from_trip(trip_id)
 
             formatted_links = []
             for link in links:
