@@ -15,6 +15,7 @@ from src.controllers.participant_finder import ParticipantFinder
 from src.controllers.participant_confirmer import ParticipantConfirmer
 
 from src.controllers.activity_creator import ActivityCreator
+from src.controllers.activity_finder import ActivityFinder
 
 # Importação de repositorios
 from src.models.repositories.trips_repository import TripsRepository
@@ -123,6 +124,17 @@ def create_activity(tripId):
     controller = ActivityCreator(activities_repository)
 
     response = controller.create(request.json, tripId)
+
+
+    return jsonify(response["body"]), response["status_code"]
+
+@trips_routes_bp.route("/trips/<tripId>/activities", methods=["GET"])
+def find_activities(tripId):
+    conn = db_connection_handler.get_connection()
+    activities_repository = ActivitiesRepository(conn)
+    controller = ActivityFinder(activities_repository)
+
+    response = controller.find_from_trip(tripId)
 
 
     return jsonify(response["body"]), response["status_code"]
