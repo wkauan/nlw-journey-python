@@ -19,7 +19,7 @@ class ActivityCreator:
 
             return {
                 "body": { "activity_id": activity_id },
-                "stats_code": 201
+                "status_code": 201
             }
         except Exception as exception:
             return {

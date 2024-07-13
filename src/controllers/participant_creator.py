@@ -28,7 +28,7 @@ class ParticipantCreator:
 
             return {
                 "body": { "participant_id": participant_id },
-                "stats_code": 201
+                "status_code": 201
             }
         except Exception as exception:
             return {
